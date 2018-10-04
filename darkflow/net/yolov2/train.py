@@ -66,7 +66,7 @@ def loss(self, net_out):
     adjusted_prob = tf.nn.softmax(net_out_reshape[:, :, :, :, 5:])
     adjusted_prob = tf.reshape(adjusted_prob, [-1, H*W, B, C])
 
-    adjusted_net_out = tf.concat([adjusted_coords_xy, adjusted_coords_wh, adjusted_prob], 3)
+    adjusted_net_out = tf.concat([adjusted_coords_xy, adjusted_coords_wh, adjusted_c, adjusted_prob], 3)
 
     wh = tf.pow(coords[:,:,:,2:4], 2) * np.reshape([W, H], [1, 1, 1, 2])
     area_pred = wh[:,:,:,0] * wh[:,:,:,1]
